@@ -1,18 +1,32 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, RootStateOrAny, useDispatch } from 'react-redux';
 import {dispatchLogout} from '../redux/Actions/authActions';
+import axios from 'axios';
+
+const initialState = {
+    msg: ''
+};
 
 export default function Header() {
 
     const auth = useSelector((state: RootStateOrAny) => state.auth);
 
+    const [msg, setMsg] = useState(initialState);
+
     const {isLogged} = auth;
 
     const dispatch = useDispatch();
 
-    const handleLogout = (e: any) => {
+    const handleLogout = async (e: any) => {
         e.preventDefault();
+
+        await axios.post('/user/logout');
+        setMsg({msg: "Logged out!"});
+
+        localStorage.removeItem('firstlogin');
+
+        console.log(msg);
 
         dispatch(dispatchLogout());
     };

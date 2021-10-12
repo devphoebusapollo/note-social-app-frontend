@@ -3,7 +3,7 @@ import ACTIONS from '../Actions/';
 const initialState = {
     user: [],
     isAdmin: false,
-    isLogged: false
+    isLogged: false,
 };
 
 const authReducer = (state = initialState, action: any) => {
@@ -16,8 +16,14 @@ const authReducer = (state = initialState, action: any) => {
         case ACTIONS.LOGOUT :
             return {
                 ...state,
-                isLogged: false
+                isLogged: false,
+                user: []
             }
+        case ACTIONS.GET_USER : 
+        return {
+            ...state,
+            user: action.payload.user
+        }
         default:
             return state
     }
