@@ -1,34 +1,22 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, RootStateOrAny, useDispatch } from 'react-redux';
-import {dispatchLogout} from '../redux/Actions/authActions';
+import { useSelector, RootStateOrAny } from 'react-redux';
 import axios from 'axios';
-
-const initialState = {
-    msg: ''
-};
 
 export default function Header() {
 
     const auth = useSelector((state: RootStateOrAny) => state.auth);
 
-    const [msg, setMsg] = useState(initialState);
-
     const {isLogged} = auth;
-
-    const dispatch = useDispatch();
 
     const handleLogout = async (e: any) => {
         e.preventDefault();
 
         await axios.post('/user/logout');
-        setMsg({msg: "Logged out!"});
 
         localStorage.removeItem('firstlogin');
 
-        console.log(msg);
-
-        dispatch(dispatchLogout());
+        window.location.href = '/login';
     };
 
         if(isLogged) {
@@ -42,7 +30,6 @@ export default function Header() {
         } else {
             return(
                 <div className="header-container">
-                    <Link to="/login"><li>Login</li></Link>
                     <Link to="/signup"><li>Sign Up</li></Link>
                 </div>
             )

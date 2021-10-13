@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Signup() {
     return (
@@ -14,6 +15,7 @@ export default function Signup() {
                 <input type="text" placeholder="Country"/>
                 <button type="submit">Submit</button>
             </form>
+            <p>Already have an account? <Link to="/login">Login</Link></p>
         </div>
     )
 }

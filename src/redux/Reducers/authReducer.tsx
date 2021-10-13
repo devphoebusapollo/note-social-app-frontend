@@ -13,12 +13,6 @@ const authReducer = (state = initialState, action: any) => {
                 ...state,
                 isLogged: true
             }
-        case ACTIONS.LOGOUT :
-            return {
-                ...state,
-                isLogged: false,
-                user: []
-            }
         case ACTIONS.GET_USER : 
         return {
             ...state,

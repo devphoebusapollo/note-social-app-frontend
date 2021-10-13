@@ -32,7 +32,8 @@ export default function Login() {
             history.push('/home');
 
         } catch (err: any) {
-            err.response.data.msg && setUser({...user, err: "There's a problem logging in", success: ''})
+            console.log(err);
+            setUser({...user, err: "There's a problem logging in", success: ''})
         }
     };
 

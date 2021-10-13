@@ -29,7 +29,6 @@ function App() {
 
         dispatch({type: "GET_TOKEN", payload: res.data.access_token});
       };
-
       getUserToken();
     }
 
@@ -40,8 +39,8 @@ function App() {
       const getUser = () => {
         dispatch(dispatchLogin());
         return fetchUser(token).then(res => {
-          dispatch(dispatchGetUser(res))
-        })
+            dispatch(dispatchGetUser(res))
+        });
       }
       getUser();
     }

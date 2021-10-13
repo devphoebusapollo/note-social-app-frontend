@@ -7,12 +7,6 @@ export const dispatchLogin = () => {
     }
 };
 
-export const dispatchLogout = () => {
-    return {
-        type: ACTIONS.LOGOUT
-    }
-};
-
 export const fetchUser = async (token: any) => {
     const res = await axios.post('/user/getuser', { token });
     return res;
